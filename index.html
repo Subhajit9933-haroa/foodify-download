@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FOODIFY — Download App</title>
+  <meta name="description" content="Download the FOODIFY APK — fast & easy" />
+  <style>
+    :root{
+      --orange: #ff7a18;
+      --orange-2: #ff9a3c;
+      --white: #ffffff;
+      --bg: #fffaf6;
+      --muted: #6b6b6b;
+      --card-shadow: 0 14px 30px rgba(0,0,0,0.08);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    html,body{height:100%;margin:0;background:var(--bg);color:#222}
+    *{box-sizing:border-box}
+
+    .container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;position:relative;overflow:hidden;}
+
+    .card{width:100%;max-width:980px;background:linear-gradient(180deg,var(--white),#fff7f0);border-radius:20px;box-shadow:var(--card-shadow);padding:32px;display:flex;gap:28px;align-items:center;position:relative;z-index:2;overflow:hidden;}
+
+    .left{flex:1}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:70px;height:70px;border-radius:16px;background:linear-gradient(135deg,var(--orange),var(--orange-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--white);font-size:30px;box-shadow:0 8px 24px rgba(255,122,24,0.25);}
+
+    h1{margin:8px 0 6px;font-size:28px}
+    p.lead{margin:0;color:var(--muted);line-height:1.5}
+
+    .right{width:320px;flex-shrink:0}
+    .download-card{background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.95));border-radius:14px;padding:18px;box-shadow:0 8px 20px rgba(0,0,0,0.06);text-align:center}
+
+    .app-preview{height:160px;border-radius:10px;background:linear-gradient(180deg,#fff,#fff6f0);display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,0,0,0.03);margin-bottom:12px}
+    .apk-name{font-weight:600;margin-bottom:6px}
+    .apk-meta{font-size:13px;color:var(--muted);margin-bottom:14px}
+
+    .btn-download{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,var(--orange),var(--orange-2));color:var(--white);border:none;padding:12px 18px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;box-shadow:0 8px 18px rgba(255,122,24,0.24);transition:transform .14s ease, box-shadow .14s ease}
+    .btn-download:active{transform:translateY(1px)}
+
+    .btn-secondary{display:block;margin-top:10px;font-size:13px;color:var(--muted);text-decoration:none}
+
+    .bg-emojis{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+    .emoji{position:absolute;font-size:28px;opacity:0.95;will-change:transform,opacity;filter:drop-shadow(0 6px 14px rgba(0,0,0,0.06));}
+
+    @keyframes floatUp{0%{transform:translateY(20px) scale(0.9) rotate(0deg);opacity:0}10%{opacity:1}100%{transform:translateY(-140vh) scale(1.05) rotate(360deg);opacity:0.95}}
+
+    @media (max-width:880px){.card{flex-direction:column;align-items:stretch;padding:22px}.right{width:100%}.app-preview{height:140px}h1{font-size:22px}}
+
+    .note{font-size:13px;color:var(--muted);margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card" role="main">
+      <div class="left">
+        <div class="brand">
+          <div class="logo">F</div>
+          <div>
+            <div style="font-weight:700">FOODIFY</div>
+            <div style="font-size:13px;color:var(--muted)">Fast food delivery — APK download</div>
+          </div>
+        </div>
+
+        <h1>Get FOODIFY on your Android device</h1>
+        <p class="lead">Download the APK and install the FOODIFY app directly on your phone. Safe, quick, and no app store required — just tap the download button and follow your device prompts.</p>
+
+        <div style="margin-top:18px">
+          <ul style="padding-left:18px;margin:0;color:var(--muted)">
+            <li>Lightweight APK — easy install</li>
+            <li>Offline installer (place `app.apk` in the same folder as this page)</li>
+            <li>Secure (serve over HTTPS from your host for best results)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="download-card">
+          <div class="app-preview">
+            <div style="text-align:center">
+              <div style="font-size:36px">🍔🍕</div>
+              <div style="font-size:13px;color:var(--muted);margin-top:8px">FOODIFY — v1.0</div>
+            </div>
+          </div>
+
+          <div class="apk-name" id="apkName">app.apk</div>
+          <div class="apk-meta" id="apkMeta">Size: unknown · Type: Android Package</div>
+
+          <a id="downloadBtn" class="btn-download" href="app.apk" download>⬇️ Download APK</a>
+
+          <a class="btn-secondary" href="#install" onclick="scrollToInstall();return false">How to install on Android</a>
+
+          <div class="note">If download doesn't start, make sure <strong>app.apk</strong> exists on your server.</div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-emojis" id="bgEmojis" aria-hidden="true"></div>
+  </div>
+  <script>
+    (function(){const emojis=['🍕','🍔','🍟','🌮','🍣','🍩','🧋','🍜','🥗','🍪','🥪','🍱','🧁','🥟','🍛'];const container=document.getElementById('bgEmojis');const count=24;function rand(min,max){return Math.random()*(max-min)+min}for(let i=0;i<count;i++){createEmoji(i);}function createEmoji(i){const el=document.createElement('div');el.className='emoji';el.textContent=emojis[Math.floor(Math.random()*emojis.length)];el.style.left=(Math.random()*100)+'%';el.style.top=(100+Math.random()*20)+'%';const size=Math.floor(rand(20,48));el.style.fontSize=size+'px';const duration=rand(10,24);const delay=rand(0,-18);el.style.animation=`floatUp ${duration}s linear ${delay}s infinite`;el.style.transformOrigin='center';container.appendChild(el);el.addEventListener('animationiteration',()=>{el.style.left=(Math.random()*100)+'%';el.style.fontSize=Math.floor(rand(18,52))+'px';el.textContent=emojis[Math.floor(Math.random()*emojis.length)];});}})();
+
+    (function(){const apkUrl='app.apk';const apkMetaEl=document.getElementById('apkMeta');fetch(apkUrl,{method:'HEAD'}).then(res=>{if(res.ok){const size=res.headers.get('content-length');if(size){apkMetaEl.textContent='Size: '+readableBytes(parseInt(size))+' · Type: Android package';}}}).catch(()=>{});function readableBytes(bytes){const thresh=1024;if(Math.abs(bytes)<thresh)return bytes+' B';const units=['KB','MB','GB','TB'];let u=-1;do{bytes/=thresh;++u;}while(Math.abs(bytes)>=thresh&&u<units.length-1);return bytes.toFixed(1)+' '+units[u];}})();
+
+    function scrollToInstall(){alert('To install FOODIFY:\n1) Download the APK.\n2) On your Android device, open the file and allow installations from this source if prompted.\n3) Finish installation.');}
+  </script>
+</body>
+</html>
